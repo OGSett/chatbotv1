@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100VH;
+  justify-content: center;
+  align-items: center;
+}
+
+.holder {
+  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+.sent {
+  display: flex;
+  justify-content: flex-end;
+}
+.recieved {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.msgHolder {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}

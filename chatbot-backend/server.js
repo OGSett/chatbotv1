@@ -9,32 +9,28 @@ import Message from './models/Message.js';
 
 dotenv.config();
 
-// Initialize Express app
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use('/api/chat', ChatRoutes);
 
-// Create HTTP server and Socket.IO instance
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:3000', // Frontend URL
+        origin: 'http://localhost:3000', 
         methods: ['GET', 'POST'],
     },
 });
 
-// Connect to MongoDB
+// connect to db
 mongoose
     .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch((err) => console.error('MongoDB connection error:', err));
 
-// Socket.IO Connection
+// socket connection
 io.on('connection', (socket) => {
     console.log(`User connected: ${socket.id}`);
 
@@ -59,11 +55,11 @@ io.on('connection', (socket) => {
             //     return;
             // }
 
-            // Broadcast message to the room
+            // broadcast message to hte room
             io.to(room).emit('receiveMessage', { sender, message, time: new Date() });
             console.log(`Broadcasting message: "${message}" from ${sender} to room: ${room}`);
 
-            // Save message to database
+            // save message to database
             const newMessage = new Message({ room, sender, message });
             await newMessage.save();
             console.log('Message saved to database:', newMessage);
@@ -72,12 +68,12 @@ io.on('connection', (socket) => {
         }
     });
 
-    // Handle disconnect
+    // handle disconnect
     socket.on('disconnect', () => {
         console.log(`User disconnected: ${socket.id}`);
     });
 });
 
-// Start the server
+// start the server
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

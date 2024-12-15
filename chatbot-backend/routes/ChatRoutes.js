@@ -3,7 +3,7 @@ import Message from "../models/Message.js";
 
 const ChatRoutes = Router();
 
-// Get messages by room
+// get messages by room
 ChatRoutes.get("/:room", async (req, res) => {
   try {
     const messages = await Message.find({ room: req.params.room }).sort({ timestamp: 1 });

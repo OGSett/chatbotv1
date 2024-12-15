@@ -49,7 +49,7 @@ const ChatVotComp = () => {
                     // <strong>{msg.sender === senderId ? "You" : msg.sender}:</strong> {msg.message}{" "}
                     // <small>{msg.time ? new Date(msg.time).toLocaleString() : "Unknown Time"}</small>
                     <div key={index}>
-                        {msg.sender === senderId ? <p className="sent">You: {msg.message}</p> : <p className="receive">{msg.sender}: {msg.message}</p>}
+                        {msg.sender === senderId ? <p className="sent">You : {msg.message}</p> : <p className="receive">{msg.sender}: {msg.message}</p>}
                     </div>
                 ))}
             </div>

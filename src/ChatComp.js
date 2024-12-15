@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://cbb-p7z8.onrender.com");
 
 const ChatVotComp = () => {
     const [messages, setMessages] = useState([]); 

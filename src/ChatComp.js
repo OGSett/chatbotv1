@@ -48,8 +48,13 @@ const ChatVotComp = () => {
                 {messages.map((msg, index) => (
                     // <strong>{msg.sender === senderId ? "You" : msg.sender}:</strong> {msg.message}{" "}
                     // <small>{msg.time ? new Date(msg.time).toLocaleString() : "Unknown Time"}</small>
+                    // <div key={index}>
+                    //     {msg.sender === senderId ? <p className="sent">You : {msg.message}</p> : <p className="receive">{msg.sender}: {msg.message}</p>}
+                    // </div>
                     <div key={index}>
-                        {msg.sender === senderId ? <p className="sent">You : {msg.message}</p> : <p className="receive">{msg.sender}: {msg.message}</p>}
+                         <strong>{msg.sender === senderId ? "You" : msg.sender}:</strong> {msg.message}{" "}
+                        <small>{msg.time ? new Date(msg.time).toLocaleString() : "Unknown Time"}</small>
+                        {/* {msg.sender === senderId ? <p className="sent">You: {msg.message}</p> : <p className="receive">{msg.sender}: {msg.message}</p>} */}
                     </div>
                 ))}
             </div>
